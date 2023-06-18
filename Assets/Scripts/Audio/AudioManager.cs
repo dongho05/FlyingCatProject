@@ -26,7 +26,20 @@ public static class AudioManager
         initialized = true;
         audioSource = source;
 
-        
+        audioClips.Add(AudioClipName.ButtonClick,
+             Resources.Load<AudioClip>("ButtonClick"));
+        audioClips.Add(AudioClipName.ExitClick,
+             Resources.Load<AudioClip>("ExitClick"));
+        audioClips.Add(AudioClipName.PlayClick,
+             Resources.Load<AudioClip>("PlayClick"));
+        audioClips.Add(AudioClipName.swoosh,
+            Resources.Load<AudioClip>("swoosh"));
+        audioClips.Add(AudioClipName.Fly,
+           Resources.Load<AudioClip>("Fly"));
+        audioClips.Add(AudioClipName.point,
+           Resources.Load<AudioClip>("point"));
+        audioClips.Add(AudioClipName.Die,
+          Resources.Load<AudioClip>("Die"));
 
     }
 
