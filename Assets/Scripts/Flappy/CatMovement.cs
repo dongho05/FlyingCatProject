@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Bird : MonoBehaviour
+public class CatMovement : MonoBehaviour
 {
     private Rigidbody2D rigidbody2D;
     private float jumpForce = 6f;
@@ -13,7 +9,7 @@ public class Bird : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody2D= GetComponent<Rigidbody2D>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
         start = false;
         rigidbody2D.gravityScale = 0;
     }
@@ -21,7 +17,7 @@ public class Bird : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (!start)
             {
@@ -37,10 +33,9 @@ public class Bird : MonoBehaviour
     {
         rigidbody2D.velocity = Vector3.up * jumpForce;
         AudioManager.Play(AudioClipName.Fly);
-        //rigidbody2D.velocity = new Vector2(rigidbody2D.transform.position.x, jumpForce);
     }
 
-  
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -49,8 +44,6 @@ public class Bird : MonoBehaviour
             Debug.Log("Auu");
             Time.timeScale = 0;
             AudioManager.Play(AudioClipName.Die);
-            //SceneManager.LoadScene("Flappy");
-            //Application.Quit();
         }
     }
 

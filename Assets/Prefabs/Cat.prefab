@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7781475039094084845}
   - component: {fileID: 8352819588781132094}
   - component: {fileID: 3393375985795869321}
-  - component: {fileID: 4908026474495738135}
+  - component: {fileID: 8897138044878320692}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1.08, y: 0.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &8352819588781132094
@@ -165,7 +165,7 @@ PolygonCollider2D:
       - {x: 0.53, y: -0.105}
       - {x: 0.5, y: -0.095}
       - {x: 0.4863883, y: -0.114999995}
---- !u!114 &4908026474495738135
+--- !u!114 &8897138044878320692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5741160479361309998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb703cd361616e40b62219044ac699b, type: 3}
+  m_Script: {fileID: 11500000, guid: 413912117fa05574e99aae3369d9b71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleGenerate: {fileID: 0}
