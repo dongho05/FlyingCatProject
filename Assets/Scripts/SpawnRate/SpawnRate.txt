@@ -1,0 +1,11 @@
+ShortPipe:80, MediumPipe:20
+ShortPipe:70, MediumPipe:30
+ShortPipe:60, MediumPipe:40
+ShortPipe:50, MediumPipe:50
+ShortPipe:50, MediumPipe:45, LongPipe:5
+ShortPipe:45, MediumPipe:45, LongPipe:10
+ShortPipe:40, MediumPipe:50, LongPipe:10
+ShortPipe:40, MediumPipe:45, LongPipe:15
+ShortPipe:40, MediumPipe:45, LongPipe:15
+ShortPipe:30, MediumPipe:55, LongPipe:15
+ShortPipe:30, MediumPipe:50, LongPipe:20

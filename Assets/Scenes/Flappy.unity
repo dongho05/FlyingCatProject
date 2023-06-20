@@ -433,5 +433,9 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8897138044878320692, guid: 3897c2aa89b02f94185a21d2c9135997, type: 3}
+      propertyPath: obstacleGenerate
+      value: 
+      objectReference: {fileID: 1646542579}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3897c2aa89b02f94185a21d2c9135997, type: 3}
