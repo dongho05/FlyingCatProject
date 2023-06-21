@@ -1,33 +1,34 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 public class SpawnRateController : MonoBehaviour
 {
-    static List<string> list = new List<string>();
-    public static int ReadSpawnRate()
+    public static List<SpawnRatioObject> ReadSpawnRate()
     {
+        var list = new List<SpawnRatioObject>();
         string path = "Assets/Scripts/SpawnRate/SpawnRate.txt";
         if (File.Exists(path))
         {
 
             StreamReader reader = new StreamReader(path, true);
-            do
-            {
-                var line = reader.ReadLine();
-                list.Add(line);
 
-            } while (reader.ReadLine() == "");
-            //var line = reader.ReadToEnd();
+            var line = reader.ReadToEnd();
+
             reader.Close();
-
-
-            return list.Count;
+            list = JsonConvert.DeserializeObject<List<SpawnRatioObject>>(line);
+            Debug.Log(list.Count);
+            return list;
         }
         else
         {
-            return 0;
+            return null;
         }
+    }
+    private void Start()
+    {
+        var list = ReadSpawnRate();
     }
 }
 
