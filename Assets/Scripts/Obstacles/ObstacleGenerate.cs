@@ -6,15 +6,29 @@ using UnityEngine;
 public class ObstacleGenerate : MonoBehaviour
 {
     public List<GameObject> obstacles = new List<GameObject>();
+
+
     List<int> percentages = new List<int> { 30, 30, 40 };
     public float timeDuration;
     private float countDown;
     public bool enable;
-  
+
+    private float timePhase = 10f;
+    private float countTimePhase;
+    private int phase;
+
+
+    void Awake()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
+ 
         //countDown = timeDuration;
+        countTimePhase = timePhase;
+
         enable = false;
     }
 
@@ -27,11 +41,12 @@ public class ObstacleGenerate : MonoBehaviour
             if (countDown <= 0)
             {
                 RandomObject(percentages, obstacles);
-                //Instantiate(RandomObject(percentages,obstacles ), new Vector3(25, UnityEngine.Random.Range(-8.4f, -0.6f), 0), Quaternion.identity);
                 countDown = timeDuration;
             }
+
+            
         }
-        
+
     }
 
 
@@ -54,18 +69,22 @@ public class ObstacleGenerate : MonoBehaviour
 
         if (randomValue >= minPipe1 && randomValue <= maxPipe1)
         {
-            Instantiate(pipes[0], new Vector3(25, UnityEngine.Random.Range(-8.45f, -0.73f), 0), Quaternion.identity);
-            //return pipes[0];
+            //Instantiate(pipes[0], new Vector3(25, UnityEngine.Random.Range(-8.45f, -0.73f), 0), Quaternion.identity);
+            GameObject shortOb = ObjectPool.instance.GetShortObstacleFromPool();
+            shortOb.gameObject.transform.position = new Vector3(25, UnityEngine.Random.Range(-8.45f, -0.73f), 0);
         }
         if (randomValue >= minPipe2 && randomValue <= maxPipe2)
         {
-            Instantiate(pipes[2], new Vector3(25, UnityEngine.Random.Range(-6.48f, -0.66f), 0), Quaternion.identity);
-            //return pipes[1];
+            //Instantiate(pipes[2], new Vector3(25, UnityEngine.Random.Range(-6.48f, -0.66f), 0), Quaternion.identity);
+            GameObject mediumOb = ObjectPool.instance.GetMediumObstacleFromPool();
+            mediumOb.gameObject.transform.position = new Vector3(25, UnityEngine.Random.Range(-6.48f, -0.66f), 0);
         }
         if (randomValue >= minPipe3 && randomValue <= maxPipe3)
         {
-            Instantiate(pipes[2], new Vector3(25, UnityEngine.Random.Range(-5.5f, -0.7f), 0), Quaternion.identity);
-            //return pipes[2];
+            //Instantiate(pipes[2], new Vector3(25, UnityEngine.Random.Range(-5.5f, -0.7f), 0), Quaternion.identity);
+            GameObject longOb = ObjectPool.instance.GetLongObstacleFromPool();
+            longOb.gameObject.transform.position = new Vector3(25, UnityEngine.Random.Range(-5.5f, -0.7f), 0);
+
         }
 
         //return null;

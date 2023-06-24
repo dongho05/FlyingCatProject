@@ -5,30 +5,30 @@ using UnityEngine;
 
 public class SpawnRateController : MonoBehaviour
 {
+    public static List<SpawnRatioObject> listSpawnRates = new List<SpawnRatioObject>();
     public static List<SpawnRatioObject> ReadSpawnRate()
     {
-        var list = new List<SpawnRatioObject>();
+       
         string path = "Assets/Scripts/SpawnRate/SpawnRate.txt";
         if (File.Exists(path))
         {
-
             StreamReader reader = new StreamReader(path, true);
 
             var line = reader.ReadToEnd();
 
             reader.Close();
-            list = JsonConvert.DeserializeObject<List<SpawnRatioObject>>(line);
-            Debug.Log(list.Count);
-            return list;
+            listSpawnRates = JsonConvert.DeserializeObject<List<SpawnRatioObject>>(line);
+            Debug.Log(listSpawnRates[0].MediumPipe);
+            return listSpawnRates;
         }
         else
         {
             return null;
         }
     }
-    private void Start()
+    private void Awake()
     {
-        var list = ReadSpawnRate();
+        ReadSpawnRate();
     }
 }
 

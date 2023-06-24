@@ -194,8 +194,8 @@ GameObject:
   - component: {fileID: 4384655401758793511}
   - component: {fileID: 7184955872168998464}
   m_Layer: 0
-  m_Name: BigPipe
-  m_TagString: Untagged
+  m_Name: LongPipe
+  m_TagString: longPipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
