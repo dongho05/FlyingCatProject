@@ -1,44 +1,63 @@
 [
   {
     "ShortPipe": 80,
-    "MediumPipe": 20
+    "MediumPipe": 20,
+    "LongPipe": 0
   },
   {
     "ShortPipe": 70,
-    "MediumPipe": 30
+    "MediumPipe": 30,
+    "LongPipe": 0
   },
   {
     "ShortPipe": 60,
-    "MediumPipe": 40
+    "MediumPipe": 40,
+    "LongPipe": 0
   },
   {
     "ShortPipe": 50,
-    "MediumPipe": 50
+    "MediumPipe": 50,
+    "LongPipe": 0
   },
   {
     "ShortPipe": 45,
     "MediumPipe": 45,
-    "LongPipe":10
+    "LongPipe": 5
   },
   {
     "ShortPipe": 45,
     "MediumPipe": 45,
-    "LongPipe":10
+    "LongPipe": 10
   },
 {
     "ShortPipe": 40,
     "MediumPipe": 50,
-    "LongPipe":10
+    "LongPipe": 10
   },
 {
     "ShortPipe": 40,
     "MediumPipe": 45,
-    "LongPipe":15
+    "LongPipe": 15
+  },
+  {
+    "ShortPipe": 40,
+    "MediumPipe": 45,
+    "LongPipe": 15
   },
   {
     "ShortPipe": 35,
     "MediumPipe": 50,
-    "LongPipe":15
+    "LongPipe": 15
+  },
+  {
+    "ShortPipe": 30,
+    "MediumPipe": 50,
+    "LongPipe": 20
+  },
+  {
+    "ShortPipe": 30,
+    "MediumPipe": 50,
+    "LongPipe": 20
   }
 
 ]

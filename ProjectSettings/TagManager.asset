@@ -6,7 +6,13 @@ TagManager:
   tags:
   - point
   - Obstacle
+<<<<<<< HEAD
   - HUD
+=======
+  - longPipe
+  - mediumPipe
+  - shortPipe
+>>>>>>> 8c20236c3605d37ac2e1f5be0fcad167daf236c0
   layers:
   - Default
   - TransparentFX

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7423094734627398981}
   - component: {fileID: 4020951792883361872}
   m_Layer: 0
-  m_Name: SmallPipe
-  m_TagString: Untagged
+  m_Name: ShortPipe
+  m_TagString: shortPipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
