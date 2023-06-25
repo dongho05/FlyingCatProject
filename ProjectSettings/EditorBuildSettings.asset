@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MenuGame.unity
+    guid: 10cefae7f4eddec419dc8c5be3e8f8bc
+  - enabled: 1
+    path: Assets/Scenes/Flappy.unity
+    guid: b6552cba567630c46a7c5584a24bc3a6
   m_configObjects: {}
