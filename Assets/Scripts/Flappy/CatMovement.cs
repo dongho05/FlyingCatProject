@@ -52,6 +52,8 @@ public class CatMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("point"))
         {
             AudioManager.Play(AudioClipName.point);
+            HUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
+            hud.AddPoints(1);
             Debug.Log("+1");
         }
     }
