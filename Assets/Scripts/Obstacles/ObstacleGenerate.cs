@@ -7,16 +7,16 @@ public class ObstacleGenerate : MonoBehaviour
 {
     public List<GameObject> obstacles = new List<GameObject>();
 
-
+    
     List<int> percentages = new List<int> { 30, 30, 40 };
     public float timeDuration;
     private float countDown;
     public bool enable;
 
-    private float timePhase = 10f;
+    private float timePhase= 10f;
     private float countTimePhase;
     private int phase;
-
+    
 
     void Awake()
     {
@@ -25,10 +25,13 @@ public class ObstacleGenerate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
- 
+        phase = 0;
+        percentages[0] = SpawnRateController.listSpawnRates[phase].ShortPipe;
+        percentages[1] = SpawnRateController.listSpawnRates[phase].MediumPipe;
+        percentages[2] = SpawnRateController.listSpawnRates[phase].LongPipe;
         //countDown = timeDuration;
         countTimePhase = timePhase;
-
+    
         enable = false;
     }
 
@@ -44,9 +47,30 @@ public class ObstacleGenerate : MonoBehaviour
                 countDown = timeDuration;
             }
 
-            
+            countTimePhase -= Time.deltaTime;
+            if (countTimePhase <= 0)
+            {
+                phase++;
+                Debug.Log(phase);
+                
+                if (phase <= 11)
+                {
+                    if (phase == 4 || phase == 8 || phase == 12)
+                    {
+                        ObstacleMove.speed++;
+                    }
+                    percentages[0] = SpawnRateController.listSpawnRates[phase].ShortPipe;
+                    percentages[1] = SpawnRateController.listSpawnRates[phase].MediumPipe;
+                    percentages[2] = SpawnRateController.listSpawnRates[phase].LongPipe;
+                }
+                else 
+                {
+                    ObstacleMove.speed+=0.5f;
+                }
+                countTimePhase = timePhase;
+            }
         }
-
+        
     }
 
 
@@ -84,7 +108,7 @@ public class ObstacleGenerate : MonoBehaviour
             //Instantiate(pipes[2], new Vector3(25, UnityEngine.Random.Range(-5.5f, -0.7f), 0), Quaternion.identity);
             GameObject longOb = ObjectPool.instance.GetLongObstacleFromPool();
             longOb.gameObject.transform.position = new Vector3(25, UnityEngine.Random.Range(-5.5f, -0.7f), 0);
-
+          
         }
 
         //return null;
