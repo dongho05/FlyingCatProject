@@ -1,3 +1,4 @@
+using Assets.Scripts.Flappy;
 using Assets.Scripts.Obstacles;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     GameObject pauseMenu;
 
     private List<Obstacle> list = new List<Obstacle>();
+    private List<Cat> listC = new List<Cat>();
     public void Pause()
     {
         pauseMenu.SetActive(true);
@@ -39,8 +41,8 @@ public class PauseMenu : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        string path = "Assets/Scripts/Obstacles/data.dat";
-        File.WriteAllText(path, "");
+        string pathPipe = "Assets/Scripts/Obstacles/data.dat";
+        File.WriteAllText(pathPipe, "");
         foreach (var item in shortObject)
         {
             list.Add(new Obstacle
@@ -71,11 +73,19 @@ public class PauseMenu : MonoBehaviour
                 phase = ObstacleGenerate.phaseNow
             });
         }
-        string result = JsonConvert.SerializeObject(list, Formatting.Indented);
+        string resultP = JsonConvert.SerializeObject(list, Formatting.Indented);
+        Debug.Log(resultP);
+        File.WriteAllText(pathPipe, resultP);
 
-        File.WriteAllText(path, result);
-
-
+        string pathPlayer = "Assets/Scripts/Flappy/player.dat";
+        File.WriteAllText(pathPlayer, "");
+        var cat = new Cat
+        {
+            xPlayer = player.transform.position.x,
+            yPlayer = player.transform.position.y
+        };
+        string resultC = JsonConvert.SerializeObject(cat, Formatting.Indented);
+        File.WriteAllText(pathPlayer, resultC);
 
         HUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
         float score = hud.GetPoints();
