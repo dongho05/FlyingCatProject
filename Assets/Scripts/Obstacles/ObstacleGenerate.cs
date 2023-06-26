@@ -7,20 +7,21 @@ public class ObstacleGenerate : MonoBehaviour
 {
     public List<GameObject> obstacles = new List<GameObject>();
 
-    
+    public static int phaseNow = 1;
+
     List<int> percentages = new List<int> { 30, 30, 40 };
     public float timeDuration;
     private float countDown;
     public bool enable;
 
-    private float timePhase= 10f;
+    private float timePhase = 10f;
     private float countTimePhase;
     private int phase;
-    
+
 
     void Awake()
     {
-        
+
     }
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class ObstacleGenerate : MonoBehaviour
         percentages[2] = SpawnRateController.listSpawnRates[phase].LongPipe;
         //countDown = timeDuration;
         countTimePhase = timePhase;
-    
+
         enable = false;
     }
 
@@ -52,32 +53,31 @@ public class ObstacleGenerate : MonoBehaviour
             {
                 phase++;
                 Debug.Log(phase);
-                
+                phaseNow = phase;
                 if (phase <= 11)
                 {
                     if (phase == 4 || phase == 8 || phase == 12)
                     {
                         ObstacleMove.speed++;
+
                     }
                     percentages[0] = SpawnRateController.listSpawnRates[phase].ShortPipe;
                     percentages[1] = SpawnRateController.listSpawnRates[phase].MediumPipe;
                     percentages[2] = SpawnRateController.listSpawnRates[phase].LongPipe;
                 }
-                else 
+                else
                 {
-                    ObstacleMove.speed+=0.5f;
+                    ObstacleMove.speed += 0.5f;
                 }
                 countTimePhase = timePhase;
             }
         }
-        
+
     }
 
 
     public static void RandomObject(List<int> percentages, List<GameObject> pipes)
     {
-        string objectDict = "";
-
         System.Random random = new System.Random();
         double randomValue = random.Next(1, 101);
         Console.WriteLine(randomValue);
@@ -108,7 +108,7 @@ public class ObstacleGenerate : MonoBehaviour
             //Instantiate(pipes[2], new Vector3(25, UnityEngine.Random.Range(-5.5f, -0.7f), 0), Quaternion.identity);
             GameObject longOb = ObjectPool.instance.GetLongObstacleFromPool();
             longOb.gameObject.transform.position = new Vector3(25, UnityEngine.Random.Range(-5.5f, -0.7f), 0);
-          
+
         }
 
         //return null;
