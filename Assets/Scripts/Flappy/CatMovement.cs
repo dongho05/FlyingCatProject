@@ -6,6 +6,8 @@ public class CatMovement : MonoBehaviour
     private float jumpForce = 6f;
     private bool start;
     public GameObject obstacleGenerate;
+    [SerializeField]
+    GameObject gameOverMenu;
 
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class CatMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("Auu");
+            gameOverMenu.SetActive(true);
             Time.timeScale = 0;
             AudioManager.Play(AudioClipName.Die);
         }

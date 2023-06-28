@@ -12,7 +12,6 @@ public class PauseMenu : MonoBehaviour
     GameObject pauseMenu;
 
     private List<Obstacle> list = new List<Obstacle>();
-    private List<Cat> listC = new List<Cat>();
     public void Pause()
     {
         pauseMenu.SetActive(true);
