@@ -83,13 +83,13 @@ public class ObstacleGenerate : MonoBehaviour
         Console.WriteLine(randomValue);
 
         int minPipe1 = 1;
-        int maxPipe1 = (int)percentages[0] + 1;
+        int maxPipe1 = (int)percentages[0];
 
         int minPipe2 = (int)percentages[0] + 1;
-        int maxPipe2 = (int)percentages[0] + (int)percentages[1] + 1;
+        int maxPipe2 = (int)percentages[0] + (int)percentages[1];
 
         int minPipe3 = (int)percentages[0] + (int)percentages[1] + 1;
-        int maxPipe3 = 101;
+        int maxPipe3 = 100;
 
         if (randomValue >= minPipe1 && randomValue <= maxPipe1)
         {
