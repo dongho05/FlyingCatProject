@@ -10,7 +10,7 @@ public class ObstacleGenerate : MonoBehaviour
     public static int phaseNow = 1;
 
     List<int> percentages = new List<int> { 30, 30, 40 };
-    public float timeDuration;
+    private float timeDuration = 2;
     private float countDown;
     public bool enable;
 
@@ -26,7 +26,7 @@ public class ObstacleGenerate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        phase = 0;
+        phase = 1; Debug.Log(phase);
         percentages[0] = SpawnRateController.listSpawnRates[phase].ShortPipe;
         percentages[1] = SpawnRateController.listSpawnRates[phase].MediumPipe;
         percentages[2] = SpawnRateController.listSpawnRates[phase].LongPipe;
@@ -51,8 +51,8 @@ public class ObstacleGenerate : MonoBehaviour
             countTimePhase -= Time.deltaTime;
             if (countTimePhase <= 0)
             {
-                phase++;
-                
+                phase++; Debug.Log(phase);
+
                 phaseNow = phase;
                 Debug.Log(phaseNow);
                 
@@ -61,6 +61,7 @@ public class ObstacleGenerate : MonoBehaviour
                     if (phase == 4 || phase == 8 || phase == 12)
                     {
                         ObstacleMove.speed++;
+                        timeDuration -= 0.3f;
 
                     }
 
