@@ -16,7 +16,7 @@ public class ObstacleGenerate : MonoBehaviour
 
     private float timePhase = 10f;
     private float countTimePhase;
-    private int phase;
+    public int phase;
 
 
     void Awake()
@@ -52,8 +52,10 @@ public class ObstacleGenerate : MonoBehaviour
             if (countTimePhase <= 0)
             {
                 phase++;
-                Debug.Log(phase);
+                
                 phaseNow = phase;
+                Debug.Log(phaseNow);
+                
                 if (phase <= 11)
                 {
                     if (phase == 4 || phase == 8 || phase == 12)
@@ -61,6 +63,7 @@ public class ObstacleGenerate : MonoBehaviour
                         ObstacleMove.speed++;
 
                     }
+
                     percentages[0] = SpawnRateController.listSpawnRates[phase].ShortPipe;
                     percentages[1] = SpawnRateController.listSpawnRates[phase].MediumPipe;
                     percentages[2] = SpawnRateController.listSpawnRates[phase].LongPipe;
