@@ -10,13 +10,13 @@ public class ObstacleGenerate : MonoBehaviour
     public static int phaseNow = 1;
 
     List<int> percentages = new List<int> { 30, 30, 40 };
-    public float timeDuration;
+    private float timeDuration = 2;
     private float countDown;
     public bool enable;
 
     private float timePhase = 10f;
     private float countTimePhase;
-    private int phase;
+    public int phase;
 
 
     void Awake()
@@ -26,7 +26,7 @@ public class ObstacleGenerate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        phase = 0;
+        phase = 1; Debug.Log(phase);
         percentages[0] = SpawnRateController.listSpawnRates[phase].ShortPipe;
         percentages[1] = SpawnRateController.listSpawnRates[phase].MediumPipe;
         percentages[2] = SpawnRateController.listSpawnRates[phase].LongPipe;
@@ -51,16 +51,20 @@ public class ObstacleGenerate : MonoBehaviour
             countTimePhase -= Time.deltaTime;
             if (countTimePhase <= 0)
             {
-                phase++;
-                Debug.Log(phase);
+                phase++; Debug.Log(phase);
+
                 phaseNow = phase;
+                Debug.Log(phaseNow);
+                
                 if (phase <= 11)
                 {
                     if (phase == 4 || phase == 8 || phase == 12)
                     {
                         ObstacleMove.speed++;
+                        timeDuration -= 0.3f;
 
                     }
+
                     percentages[0] = SpawnRateController.listSpawnRates[phase].ShortPipe;
                     percentages[1] = SpawnRateController.listSpawnRates[phase].MediumPipe;
                     percentages[2] = SpawnRateController.listSpawnRates[phase].LongPipe;
@@ -83,13 +87,13 @@ public class ObstacleGenerate : MonoBehaviour
         Console.WriteLine(randomValue);
 
         int minPipe1 = 1;
-        int maxPipe1 = (int)percentages[0] + 1;
+        int maxPipe1 = (int)percentages[0];
 
         int minPipe2 = (int)percentages[0] + 1;
-        int maxPipe2 = (int)percentages[0] + (int)percentages[1] + 1;
+        int maxPipe2 = (int)percentages[0] + (int)percentages[1];
 
         int minPipe3 = (int)percentages[0] + (int)percentages[1] + 1;
-        int maxPipe3 = 101;
+        int maxPipe3 = 100;
 
         if (randomValue >= minPipe1 && randomValue <= maxPipe1)
         {
