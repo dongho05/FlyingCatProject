@@ -9,10 +9,5 @@
             return PipeType.Short;
         }
 
-        public override void Initialize()
-        {
-            pHeight = 2;
-            pWidth = 2;
-        }
     }
 }

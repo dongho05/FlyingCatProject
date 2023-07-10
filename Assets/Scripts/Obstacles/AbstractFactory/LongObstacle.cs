@@ -6,11 +6,5 @@
         {
             return PipeType.Long;
         }
-
-        public override void Initialize()
-        {
-            pWidth = 2;
-            pHeight = 5;
-        }
     }
 }

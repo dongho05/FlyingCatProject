@@ -7,10 +7,5 @@
             return PipeType.Medium;
         }
 
-        public override void Initialize()
-        {
-            pWidth = 2;
-            pHeight = 4;
-        }
     }
 }
