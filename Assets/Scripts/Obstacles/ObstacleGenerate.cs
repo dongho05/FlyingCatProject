@@ -1,4 +1,4 @@
-
+﻿
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,7 +64,9 @@ public class ObstacleGenerate : MonoBehaviour
                         timeDuration -= 0.3f;
 
                     }
-
+                    Debug.Log("Tỉ lệ spawn: " + SpawnRateController.listSpawnRates[phase].ShortPipe + ", "
+                        + SpawnRateController.listSpawnRates[phase].MediumPipe + ", "
+                        + SpawnRateController.listSpawnRates[phase].LongPipe);
                     percentages[0] = SpawnRateController.listSpawnRates[phase].ShortPipe;
                     percentages[1] = SpawnRateController.listSpawnRates[phase].MediumPipe;
                     percentages[2] = SpawnRateController.listSpawnRates[phase].LongPipe;
