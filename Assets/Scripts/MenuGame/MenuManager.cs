@@ -17,7 +17,9 @@ namespace Assets.Scripts.MenuGame
                 case MenuName.MainScene:
                     SceneManager.LoadScene("MenuGame");
                     break;
-            }
+            }  
+
+
 
         }
     }
