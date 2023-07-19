@@ -40,41 +40,55 @@ public class PauseMenu : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        string pathPipe = "Assets/Scripts/Obstacles/data.dat";
-        File.WriteAllText(pathPipe, "");
-        foreach (var item in shortObject)
+        //string pathPipe = "Assets/Scripts/Obstacles/data.dat";
+
+        string playerFilePath = "";
+        playerFilePath = GetFilePath("data", "dataObstacle");
+        if (!Directory.Exists(Path.GetDirectoryName(playerFilePath)))
         {
-            list.Add(new Obstacle
-            {
-                xPipe = item.transform.position.x,
-                yPipe = item.transform.position.y,
-                speed = ObstacleMove.speed,
-                phase = ObstacleGenerate.phaseNow
-            });
+            Directory.CreateDirectory(Path.GetDirectoryName(playerFilePath));
         }
-        foreach (var item in mediumObject)
+        else
         {
-            list.Add(new Obstacle
+            File.WriteAllText(playerFilePath, "");
+            foreach (var item in shortObject)
             {
-                xPipe = item.transform.position.x,
-                yPipe = item.transform.position.y,
-                speed = ObstacleMove.speed,
-                phase = ObstacleGenerate.phaseNow
-            });
-        }
-        foreach (var item in longObject)
-        {
-            list.Add(new Obstacle
+                list.Add(new Obstacle
+                {
+                    xPipe = item.transform.position.x,
+                    yPipe = item.transform.position.y,
+                    speed = ObstacleMove.speed,
+                    phase = ObstacleGenerate.phaseNow,
+                    type = 1
+                });
+            }
+            foreach (var item in mediumObject)
             {
-                xPipe = item.transform.position.x,
-                yPipe = item.transform.position.y,
-                speed = ObstacleMove.speed,
-                phase = ObstacleGenerate.phaseNow
-            });
+                list.Add(new Obstacle
+                {
+                    xPipe = item.transform.position.x,
+                    yPipe = item.transform.position.y,
+                    speed = ObstacleMove.speed,
+                    phase = ObstacleGenerate.phaseNow,
+                    type = 2
+                });
+            }
+            foreach (var item in longObject)
+            {
+                list.Add(new Obstacle
+                {
+                    xPipe = item.transform.position.x,
+                    yPipe = item.transform.position.y,
+                    speed = ObstacleMove.speed,
+                    phase = ObstacleGenerate.phaseNow,
+                    type = 3
+                });
+            }
+            string resultP = JsonConvert.SerializeObject(list, Formatting.Indented);
+            Debug.Log(resultP);
+            File.WriteAllText(playerFilePath, resultP);
         }
-        string resultP = JsonConvert.SerializeObject(list, Formatting.Indented);
-        Debug.Log(resultP);
-        File.WriteAllText(pathPipe, resultP);
+
 
         string pathPlayer = "Assets/Scripts/Flappy/player.dat";
         File.WriteAllText(pathPlayer, "");
@@ -89,5 +103,18 @@ public class PauseMenu : MonoBehaviour
         HUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
         float score = hud.GetPoints();
         PlayerPrefs.SetString("Score", score.ToString());
+    }
+
+    private static string GetFilePath(string FolderName, string FileName = "")
+    {
+        string filePath;
+        filePath = Path.Combine(Application.persistentDataPath, "data", FolderName);
+        if (FileName != "")
+            filePath = Path.Combine(filePath, FileName + ".json");
+        return filePath;
+    }
+    public static string LoadScore()
+    {
+        return PlayerPrefs.GetString("Score");
     }
 }

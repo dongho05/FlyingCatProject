@@ -4,6 +4,7 @@ using UnityEngine;
 public enum MenuName
 {
     MainScene,
+    Continue,
     InGame
 }
 public class MenuGame : MonoBehaviour

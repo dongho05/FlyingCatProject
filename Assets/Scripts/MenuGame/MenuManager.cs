@@ -13,6 +13,7 @@ namespace Assets.Scripts.MenuGame
                     // go to MainMenu scene
                     SceneManager.LoadScene("Flappy");
                     break;
+
                 case MenuName.MainScene:
                     SceneManager.LoadScene("MenuGame");
                     break;

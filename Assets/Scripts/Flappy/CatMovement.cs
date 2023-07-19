@@ -45,6 +45,11 @@ public class CatMovement : MonoBehaviour
         {
             Debug.Log("Auu");
             gameOverMenu.SetActive(true);
+
+            HUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
+            float score = hud.GetPoints();
+            PlayerPrefs.SetString("Score", score.ToString());
+
             Time.timeScale = 0;
             AudioManager.Play(AudioClipName.Die);
         }

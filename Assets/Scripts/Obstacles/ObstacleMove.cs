@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleMove : MonoBehaviour
@@ -10,11 +7,11 @@ public class ObstacleMove : MonoBehaviour
 
 
     // Start is called before the first frame update
-    
+
 
     void Start()
     {
-     
+
     }
 
     // Update is called once per frame
@@ -26,7 +23,7 @@ public class ObstacleMove : MonoBehaviour
 
     private void DestroyObject()
     {
-        if(transform.position.x < -12)
+        if (transform.position.x < -10)
         {
             if (this.gameObject.tag.Equals("shortPipe"))
             {

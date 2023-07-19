@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Obstacles.AbstractFactory;
+﻿using Assets.Scripts.Obstacles;
+using Assets.Scripts.Obstacles.AbstractFactory;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +36,16 @@ public class ObjectPool : MonoBehaviour
     void Start()
     {
         AssignFactoryToBuilding();
+        var isPressed = ContinueGame.IsEnter;
+        if (isPressed)
+        {
+            Debug.Log("Prefs: " + ContinueGame.LoadScore());
+            HUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
+            hud.SetPoint(ContinueGame.LoadScore());
+
+            Loadfile(ContinueGame.GetInstance());
+            ContinueGame.IsEnter = false;
+        }
         for (int i = 0; i < poolSize; i++)
         {
             GameObject obj1 = _factoryBuildings[1].GetComponent<IObstacleFactory>().CreateShortObstacle();
@@ -55,6 +66,30 @@ public class ObjectPool : MonoBehaviour
             //GameObject obj3 = Instantiate(tallPrefab);
             obj3.SetActive(false);
             longObstaclePool.Add(obj3);
+        }
+    }
+    public void Loadfile(List<Obstacle> list)
+    {
+        foreach (var item in list)
+        {
+            if (item.type == 1)
+            {
+                GameObject obj1 = GetShortObstacleFromPool();
+                obj1.SetActive(true);
+                obj1.transform.position = new Vector2(item.xPipe, item.yPipe);
+            }
+            else if (item.type == 2)
+            {
+                GameObject obj1 = GetMediumObstacleFromPool();
+                obj1.SetActive(true);
+                obj1.transform.position = new Vector2(item.xPipe, item.yPipe);
+            }
+            else
+            {
+                GameObject obj1 = GetLongObstacleFromPool();
+                obj1.SetActive(true);
+                obj1.transform.position = new Vector2(item.xPipe, item.yPipe);
+            }
         }
     }
 
@@ -91,7 +126,6 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-
     // Short Obstacle
     public GameObject GetShortObstacleFromPool()
     {
@@ -108,7 +142,7 @@ public class ObjectPool : MonoBehaviour
         }
 
         // Nếu không có đối tượng nào khả dụng trong Object Pool, hãy tạo thêm đối tượng mới
-        GameObject newObj = Instantiate(shortPrefab);
+        GameObject newObj = _factoryBuildings[1].GetComponent<IObstacleFactory>().CreateShortObstacle();
         shortObstaclePool.Add(newObj);
         return newObj;
     }
@@ -119,7 +153,6 @@ public class ObjectPool : MonoBehaviour
         shortObstaclePool.Add(obj);
         obj.SetActive(false);
     }
-
 
     // Medium Obstacle
     public GameObject GetMediumObstacleFromPool()
@@ -137,7 +170,7 @@ public class ObjectPool : MonoBehaviour
         }
 
         // Nếu không có đối tượng nào khả dụng trong Object Pool, hãy tạo thêm đối tượng mới
-        GameObject newObj = Instantiate(mediumPrefab);
+        GameObject newObj = _factoryBuildings[1].GetComponent<IObstacleFactory>().CreateMediumObstacle();
         mediumObstaclePool.Add(newObj);
         return newObj;
     }
@@ -166,7 +199,7 @@ public class ObjectPool : MonoBehaviour
         }
 
         // Nếu không có đối tượng nào khả dụng trong Object Pool, hãy tạo thêm đối tượng mới
-        GameObject newObj = Instantiate(tallPrefab);
+        GameObject newObj = _factoryBuildings[1].GetComponent<IObstacleFactory>().CreateLongObstacle();
         longObstaclePool.Add(newObj);
         return newObj;
     }
