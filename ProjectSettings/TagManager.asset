@@ -10,6 +10,8 @@ TagManager:
   - mediumPipe
   - shortPipe
   - HUD
+  - down
+  - up
   layers:
   - Default
   - TransparentFX

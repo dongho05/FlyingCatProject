@@ -88,7 +88,9 @@ public class CatMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle")
+            || collision.gameObject.CompareTag("down")
+            || collision.gameObject.CompareTag("up"))
         {
             isDead = true;
             timer.Duration = 0.5f;
