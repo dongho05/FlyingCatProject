@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Obstacles;
+﻿using Assets.Scripts.Flappy;
+using Assets.Scripts.Obstacles;
 using Assets.Scripts.Obstacles.AbstractFactory;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,6 +44,8 @@ public class ObjectPool : MonoBehaviour
             HUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
             hud.SetPoint(ContinueGame.LoadScore());
 
+            LoadPlayer(ContinueGame.GetPlayer());
+
             Loadfile(ContinueGame.GetInstance());
             ContinueGame.IsEnter = false;
         }
@@ -67,6 +70,12 @@ public class ObjectPool : MonoBehaviour
             obj3.SetActive(false);
             longObstaclePool.Add(obj3);
         }
+    }
+
+    public void LoadPlayer(Cat cat)
+    {
+        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<CatMovement>();
+        player.transform.position = new Vector2(cat.xPlayer, cat.yPlayer);
     }
     public void Loadfile(List<Obstacle> list)
     {

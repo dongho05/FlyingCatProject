@@ -1,3 +1,5 @@
+using Assets.Scripts.Flappy;
+using Assets.Scripts.Flappy.StatePattern;
 using UnityEngine;
 
 public class CatMovement : MonoBehaviour
@@ -9,16 +11,33 @@ public class CatMovement : MonoBehaviour
     [SerializeField]
     GameObject gameOverMenu;
 
-    private void Awake()
+
+    public bool isDead = false;
+    private PlayerBaseState currentState;
+    public Animator animator;
+    Timer timer;
+    private bool endGameCalled = false;
+
+    void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         start = false;
         rigidbody2D.gravityScale = 0;
-    }
 
+        timer = gameObject.AddComponent<Timer>();
+        animator = gameObject.GetComponent<Animator>();
+        currentState = new FlyState(this);
+        currentState.EnterState();
+
+    }
+    public void LoadPlayer(Cat cat)
+    {
+        gameObject.transform.position = new Vector2(cat.xPlayer, cat.yPlayer);
+    }
     // Update is called once per frame
     void Update()
     {
+        currentState.UpdateState();
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (!start)
@@ -29,7 +48,35 @@ public class CatMovement : MonoBehaviour
             }
             BirdJump();
         }
+
+        if (timer.Finished && !endGameCalled)
+        {
+            endGameCalled = true;
+            EndGame();
+        }
     }
+
+    private void EndGame()
+    {
+        Debug.Log("Auu");
+        gameOverMenu.SetActive(true);
+
+        HUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
+        float score = hud.GetPoints();
+        PlayerPrefs.SetString("Score", score.ToString());
+        Time.timeScale = 0;
+
+
+        AudioManager.Play(AudioClipName.Die);
+    }
+
+    public void ChangeState(PlayerBaseState newState)
+    {
+        currentState.ExitState();
+        currentState = newState;
+        currentState.EnterState();
+    }
+
 
     private void BirdJump()
     {
@@ -43,15 +90,10 @@ public class CatMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Auu");
-            gameOverMenu.SetActive(true);
+            isDead = true;
+            timer.Duration = 0.5f;
+            timer.Run();
 
-            HUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
-            float score = hud.GetPoints();
-            PlayerPrefs.SetString("Score", score.ToString());
-
-            Time.timeScale = 0;
-            AudioManager.Play(AudioClipName.Die);
         }
     }
 

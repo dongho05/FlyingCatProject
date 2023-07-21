@@ -42,15 +42,15 @@ public class PauseMenu : MonoBehaviour
 
         //string pathPipe = "Assets/Scripts/Obstacles/data.dat";
 
-        string playerFilePath = "";
-        playerFilePath = GetFilePath("data", "dataObstacle");
-        if (!Directory.Exists(Path.GetDirectoryName(playerFilePath)))
+        string obstacleFilePath = "";
+        obstacleFilePath = GetFilePath("data", "dataObstacle");
+        if (!Directory.Exists(Path.GetDirectoryName(obstacleFilePath)))
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(playerFilePath));
+            Directory.CreateDirectory(Path.GetDirectoryName(obstacleFilePath));
         }
         else
         {
-            File.WriteAllText(playerFilePath, "");
+            File.WriteAllText(obstacleFilePath, "");
             foreach (var item in shortObject)
             {
                 list.Add(new Obstacle
@@ -86,19 +86,37 @@ public class PauseMenu : MonoBehaviour
             }
             string resultP = JsonConvert.SerializeObject(list, Formatting.Indented);
             Debug.Log(resultP);
-            File.WriteAllText(playerFilePath, resultP);
+            File.WriteAllText(obstacleFilePath, resultP);
         }
 
 
-        string pathPlayer = "Assets/Scripts/Flappy/player.dat";
-        File.WriteAllText(pathPlayer, "");
-        var cat = new Cat
+        string playerFilePath = "";
+        playerFilePath = GetFilePath("data", "dataPlayer");
+        if (!Directory.Exists(Path.GetDirectoryName(playerFilePath)))
         {
-            xPlayer = player.transform.position.x,
-            yPlayer = player.transform.position.y
-        };
-        string resultC = JsonConvert.SerializeObject(cat, Formatting.Indented);
-        File.WriteAllText(pathPlayer, resultC);
+            Directory.CreateDirectory(Path.GetDirectoryName(playerFilePath));
+        }
+        else
+        {
+            File.WriteAllText(playerFilePath, "");
+            var cat = new Cat
+            {
+                xPlayer = player.transform.position.x,
+                yPlayer = player.transform.position.y
+            };
+            string resultC = JsonConvert.SerializeObject(cat, Formatting.Indented);
+            File.WriteAllText(playerFilePath, resultC);
+        }
+
+        //string pathPlayer = "Assets/Scripts/Flappy/player.dat";
+        //File.WriteAllText(pathPlayer, "");
+        //var cat = new Cat
+        //{
+        //    xPlayer = player.transform.position.x,
+        //    yPlayer = player.transform.position.y
+        //};
+        //string resultC = JsonConvert.SerializeObject(cat, Formatting.Indented);
+        //File.WriteAllText(pathPlayer, resultC);
 
         HUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUD>();
         float score = hud.GetPoints();

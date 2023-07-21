@@ -1,3 +1,4 @@
+using Assets.Scripts.Flappy;
 using Assets.Scripts.Obstacles;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -22,6 +23,30 @@ public class ContinueGame : MonoBehaviour
         return filePath;
     }
 
+    public static Cat GetPlayer()
+    {
+
+        Cat cat = new Cat();
+        string playerFilePath = "";
+        playerFilePath = GetFilePath("data", "dataPlayer");
+
+        if (!Directory.Exists(Path.GetDirectoryName(playerFilePath)))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(playerFilePath));
+        }
+        else
+        {
+            StreamReader reader = new StreamReader(playerFilePath, true);
+
+            var line = reader.ReadToEnd();
+            reader.Close();
+
+            cat = JsonConvert.DeserializeObject<Cat>(line);
+
+            return cat;
+        }
+        return null;
+    }
     public static List<Obstacle> GetInstance()
     {
         List<Obstacle> list = new List<Obstacle>();
@@ -43,6 +68,7 @@ public class ContinueGame : MonoBehaviour
 
             return list;
         }
+
 
         return null;
         //    string path = "Assets/Scripts/Obstacles/data.dat";

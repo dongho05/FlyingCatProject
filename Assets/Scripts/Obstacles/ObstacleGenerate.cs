@@ -55,7 +55,7 @@ public class ObstacleGenerate : MonoBehaviour
 
                 phaseNow = phase;
                 Debug.Log(phaseNow);
-                
+
                 if (phase <= 11)
                 {
                     if (phase == 4 || phase == 8 || phase == 12)
